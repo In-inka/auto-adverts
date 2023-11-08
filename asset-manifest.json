@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/auto-adverts/static/css/main.e6c13ad2.css",
+    "main.js": "/auto-adverts/static/js/main.85229d23.js",
+    "index.html": "/auto-adverts/index.html",
+    "main.e6c13ad2.css.map": "/auto-adverts/static/css/main.e6c13ad2.css.map",
+    "main.85229d23.js.map": "/auto-adverts/static/js/main.85229d23.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.85229d23.js"
+  ]
+}
