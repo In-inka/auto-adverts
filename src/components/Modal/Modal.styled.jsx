@@ -15,6 +15,7 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -22,24 +23,26 @@ export const ModalContainer = styled.div`
   background-color: rgba(255, 255, 255, 1);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px 37px;
+  padding: 40px 37px;
   border: 1px solid #efede833;
   width: 541px;
   height: 742px;
   margin: 150px auto;
 `;
 
-export const ButtonClose = styled.button`
-  border: none;
+export const ButtonClose = styled.svg`
+  stroke: black;
+  width: 24px;
+  height: 24px;
   z-index: 20;
   position: absolute;
-  top: 14px;
   right: 14px;
-  background-color: rgba(0, 0, 0, 0);
+  top: 14px;
+  cursor: pointer;
 `;
 
 export const ButtonCancel = styled.button`
-  padding: 14px 32px 14px 32px;
+  padding: 12px 50px;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
   color: #ffffff;
@@ -73,6 +76,12 @@ export const Title = styled.div`
 export const Model = styled.p`
   color: #3470ff;
 `;
+export const Picture = styled.img`
+  margin-bottom: 14px;
+  border-radius: 14px;
+  width: 469px;
+  height: 268px;
+`;
 export const Details = styled.div`
   display: flex;
   width: 277px;
@@ -83,4 +92,25 @@ export const Details = styled.div`
   line-height: 1.5;
   flex-wrap: wrap;
   margin-bottom: 14px;
+`;
+
+export const ContainerConditions = styled.ul`
+  margin-bottom: 24px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  gap: 10px;
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.24px;
+`;
+export const Conditions = styled.li`
+  padding: 7px 14px;
+  border-radius: 35px;
+  background: #f9f9f9;
 `;
