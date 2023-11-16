@@ -18,6 +18,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from 'redux/adverts/adverts-slice';
+import { splitAddress } from 'components/helpers/helpers';
 
 const Modal = ({ isOpen, onClose, selectedAdvert }) => {
   const favoriteAdverts = useSelector(selectFavoriteIds);
@@ -49,12 +50,25 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
       '<span style="color: #3470FF; font-weight: 600 ">$&</span>'
     );
   };
+  const {
+    address,
+    id,
+    img,
+    make,
+    model,
+    year,
+    type,
+    fuelConsumption,
+    engineSize,
+    description,
+    functionalities,
+    rentalConditions,
+    mileage,
+    rentalPrice,
+    photoLink,
+  } = selectedAdvert;
 
-  const addressParts = selectedAdvert.address.split(',');
-
-  // Отримати окремі теги
-  const city = addressParts[1]?.trim(); // Отримати місто, якщо воно існує
-  const country = addressParts[2]?.trim();
+  const { city, country } = splitAddress(address);
 
   const handleToggleFavorite = advertId => {
     if (favoriteAdverts.includes(advertId)) {
@@ -64,7 +78,7 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
     }
   };
 
-  const isAdvertInFavorites = favoriteAdverts.includes(selectedAdvert.id);
+  const isAdvertInFavorites = favoriteAdverts.includes(id);
 
   return (
     <>
@@ -74,53 +88,44 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
             <use href={sprite + '#icon-x'}></use>
           </ButtonClose>
           <div>
-            <Picture
-              src={selectedAdvert.img || selectedAdvert.photoLink}
-              alt={selectedAdvert.model}
-            />
+            <Picture src={img || photoLink} alt={model} />
             <div>
               <Title>
                 {' '}
-                <p>{selectedAdvert.make} </p>
-                <Model>{selectedAdvert.model}, </Model>
-                <p>{selectedAdvert.year}</p>
+                <p>{make} </p>
+                <Model>{model}, </Model>
+                <p>{year}</p>
               </Title>
             </div>
             <Details>
-              {city}| {country}| id: {selectedAdvert.id}| Year:
-              {selectedAdvert.year}| Type:{selectedAdvert.type}| Consumption:{' '}
-              {selectedAdvert.fuelConsumption}| Engine Size:{' '}
-              {selectedAdvert.engineSize}
+              {city}| {country}| id: {id}| Year: {year}| Type:{type}|
+              Consumption: {fuelConsumption}| Engine Size: {engineSize}
             </Details>
-            <p style={{ marginBottom: '24px' }}>{selectedAdvert.description}</p>
+            <p style={{ marginBottom: '24px' }}>{description}</p>
             <p style={{ marginBottom: '8px' }}>
               Accessories and functionalities:
             </p>
-            <Details>{selectedAdvert.functionalities.join('| ')}</Details>
+            <Details>{functionalities.join('| ')}</Details>
             <p>Rental Conditions:</p>
             <ContainerConditions>
-              {selectedAdvert.rentalConditions
-                .split('\n')
-                .map((condition, index) => (
-                  <Conditions
-                    key={index}
-                    dangerouslySetInnerHTML={{
-                      __html: highlightNumbers(condition),
-                    }}
-                  ></Conditions>
-                ))}
+              {rentalConditions.split('\n').map((condition, index) => (
+                <Conditions
+                  key={index}
+                  dangerouslySetInnerHTML={{
+                    __html: highlightNumbers(condition),
+                  }}
+                ></Conditions>
+              ))}
               <Conditions>
                 Mileage:{' '}
                 <span style={{ color: '#3470FF', fontWeight: '600' }}>
-                  {selectedAdvert.mileage.toLocaleString('en-US', {
-                    style: 'decimal',
-                  })}
+                  {mileage.toLocaleString('en-US', { style: 'decimal' })}
                 </span>
               </Conditions>
               <Conditions>
                 Price:{' '}
                 <span style={{ color: '#3470FF', fontWeight: '600' }}>
-                  {selectedAdvert.rentalPrice}
+                  {rentalPrice}
                 </span>
               </Conditions>
             </ContainerConditions>
@@ -128,7 +133,7 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
 
           <ButtonCancel
             type="button"
-            onClick={() => handleToggleFavorite(selectedAdvert.id)}
+            onClick={() => handleToggleFavorite(id)}
             disabled={isAdvertInFavorites}
           >
             Rental car

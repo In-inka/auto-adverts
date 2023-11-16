@@ -6,6 +6,19 @@ import {
   removeFromFavorites,
 } from 'redux/adverts/adverts-slice';
 import { selectFavoriteIds } from 'redux/adverts/advertsSelector';
+import {
+  CardsItem,
+  CardsList,
+  Favorite,
+  IconFavorite,
+  Img,
+  InfoList,
+  LearnMore,
+  Model,
+  TitleCar,
+} from './AdvertsList.styled';
+import { splitAddress } from 'components/helpers/helpers';
+import sprite from '../icons/sprite.svg';
 
 const AdvertsList = ({ adverts }) => {
   const dispatch = useDispatch();
@@ -28,47 +41,54 @@ const AdvertsList = ({ adverts }) => {
 
   return (
     <>
-      <ul>
+      <CardsList>
         {adverts?.map(advert => (
-          <li key={advert.id}>
-            <img
-              src={advert.img || advert.photoLink}
-              alt={advert.model}
-              width={401}
-              height={268}
-            />
-            <div style={{ display: 'flex', gap: 25 }}>
-              <p>{advert.make}</p>
-              <p>{advert.model}</p>
-              <p>{advert.year}</p>
+          <CardsItem key={advert.id}>
+            <Img src={advert.img || advert.photoLink} alt={advert.model} />
+            <TitleCar>
+              <p>
+                {advert.make}
+                <Model> {advert.model}</Model>, {advert.year}
+              </p>
               <p>{advert.rentalPrice}</p>
-            </div>
-            <div style={{ display: 'flex', gap: 25 }}>
-              <p>{advert.address}</p>
-              <p>{advert.rentalCompany}</p>
-              <p>{advert.accessories[2]}</p>
-              <p>{advert.type}</p>
-              <p>{advert.mileage.toLocaleString()}</p>
-              <p>{advert.id}</p>
-              <p>{advert.functionalities[0]}</p>
-            </div>
-            <button
+            </TitleCar>
+            <InfoList>
+              <li>{splitAddress(advert.address).city} | </li>
+              <li>{splitAddress(advert.address).country} | </li>
+
+              <li>{advert.rentalCompany} | </li>
+              <li>{advert.accessories[2].split(' ')[0]} | </li>
+              <li>
+                {advert.type.charAt(0).toUpperCase() +
+                  advert.type.slice(1).toLowerCase()}{' '}
+                |
+              </li>
+              <li>{advert.model} | </li>
+              <li>{advert.id} | </li>
+              <li>{advert.functionalities[0]}</li>
+            </InfoList>
+            <Favorite
               type="button"
               onClick={() => handleToggleFavorite(advert.id)}
-              style={{
-                color: favoriteAdverts.includes(advert.id) ? 'red' : 'black',
-              }}
             >
-              {favoriteAdverts.includes(advert.id)
-                ? 'Remove from Favorites'
-                : 'Add to Favorites'}
-            </button>
-            <button type="button" onClick={() => handleToggleModal(advert)}>
-              Open Modal
-            </button>
-          </li>
+              {' '}
+              <IconFavorite
+                style={{
+                  fill: favoriteAdverts.includes(advert.id) ? 'blue' : 'none',
+                  stroke: favoriteAdverts.includes(advert.id)
+                    ? 'none'
+                    : 'rgba(255, 255, 255, 0.8)',
+                }}
+              >
+                <use href={`${sprite}#icon-heart`}></use>
+              </IconFavorite>
+            </Favorite>
+            <LearnMore type="button" onClick={() => handleToggleModal(advert)}>
+              Learn more
+            </LearnMore>
+          </CardsItem>
         ))}
-      </ul>
+      </CardsList>
       <Modal
         isOpen={isModalOpen}
         onClose={handleToggleModal}

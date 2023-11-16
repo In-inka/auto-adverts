@@ -1,5 +1,5 @@
 import 'modern-normalize';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 &.hidden {
@@ -86,4 +86,12 @@ html {
   scroll-behavior: smooth;
 }
 
+`;
+
+export const ContainerStyled = styled.div`
+  padding: 115px 150px;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-family: 'Manrope';
 `;
