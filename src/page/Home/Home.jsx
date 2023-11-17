@@ -1,7 +1,9 @@
+import { HomeContainer } from './Home.styled';
+
 export const Home = () => {
   return (
     <>
-      <p>Home</p>
+      <HomeContainer></HomeContainer>
     </>
   );
 };

@@ -1,14 +1,16 @@
-import { Navigation, Head, Link } from './Header.styled';
+import { Navigation, Head, ListLink, List } from './Header.styled';
 
 const Header = () => {
   return (
     <Head>
       <Navigation>
-        <Link aria-current="page" to="/">
+        <ListLink aria-current="page" to="/">
           Home
-        </Link>
-        <Link to="/catalog">Catalog</Link>
-        <Link to="/favorites">Favorites</Link>
+        </ListLink>
+        <List>
+          <ListLink to="/catalog">Catalog</ListLink>
+          <ListLink to="/favorites">Favorites</ListLink>
+        </List>
       </Navigation>
     </Head>
   );

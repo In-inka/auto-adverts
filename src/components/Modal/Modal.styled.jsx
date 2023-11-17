@@ -53,11 +53,11 @@ export const ButtonCancel = styled.button`
 
   &:hover,
   &:focus {
-    background-color: blue;
+    background-color: #0b44cd;
   }
   &:disabled {
-    background-color: #e6533c;
-    color: #efede899;
+    background-color: #0b44cd;
+    color: #ffffff;
   }
 `;
 

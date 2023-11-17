@@ -89,7 +89,7 @@ html {
 `;
 
 export const ContainerStyled = styled.div`
-  padding: 115px 150px;
+  padding: 150px 115px;
   margin-left: auto;
   margin-right: auto;
 

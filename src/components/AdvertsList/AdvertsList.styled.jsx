@@ -82,4 +82,8 @@ export const LearnMore = styled.button`
   line-height: 1.42;
 
   border: none;
+  &:hover,
+  &:focus {
+    background-color: #0b44cd;
+  }
 `;

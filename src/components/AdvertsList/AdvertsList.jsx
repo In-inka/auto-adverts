@@ -19,6 +19,7 @@ import {
 } from './AdvertsList.styled';
 import { splitAddress } from 'components/helpers/helpers';
 import sprite from '../icons/sprite.svg';
+import { nanoid } from 'nanoid';
 
 const AdvertsList = ({ adverts }) => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const AdvertsList = ({ adverts }) => {
     <>
       <CardsList>
         {adverts?.map(advert => (
-          <CardsItem key={advert.id}>
+          <CardsItem key={nanoid()}>
             <Img src={advert.img || advert.photoLink} alt={advert.model} />
             <TitleCar>
               <p>

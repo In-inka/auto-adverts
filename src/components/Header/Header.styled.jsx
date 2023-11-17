@@ -5,7 +5,7 @@ export const Head = styled.header`
   left: 0;
   position: sticky;
   z-index: 1100;
-  min-height: 40px;
+  min-height: 35px;
   padding-right: 24px;
   padding-left: 24px;
   padding-top: 12px;
@@ -19,7 +19,18 @@ export const Head = styled.header`
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
-export const Link = styled(NavLink)`
+
+export const Navigation = styled.nav`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const List = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+export const ListLink = styled(NavLink)`
   color: white;
   font-size: 25px;
   font-weight: bold;
@@ -29,24 +40,12 @@ export const Link = styled(NavLink)`
   cursor: pointer;
   outline: none;
 
+  padding: 7px;
+
+  border: 1px solid #f7f7fb;
+  border-radius: 6px;
+
   &:hover {
     transform: scale(1.08);
   }
-`;
-
-export const Navigation = styled.nav`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const LogIn = styled.div`
-  display: flex;
-  flex-wrap: no-wrap;
-  gap: 15px;
-`;
-
-export const Logo = styled.div`
-  color: white;
-  font-size: 25px;
-  font-weight: bold;
 `;

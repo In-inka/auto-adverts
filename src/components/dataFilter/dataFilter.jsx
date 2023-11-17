@@ -1,5 +1,4 @@
 export const make = [
-  '',
   'Buick',
   'Volvo',
   'HUMMER',
@@ -25,7 +24,6 @@ export const make = [
 ];
 
 export const rentalPrices = [
-  '',
   '$10',
   '$15',
   '$20',
