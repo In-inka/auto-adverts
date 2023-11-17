@@ -7,6 +7,7 @@ import {
 } from 'redux/adverts/adverts-slice';
 import { selectFavoriteIds } from 'redux/adverts/advertsSelector';
 import {
+  Bg,
   CardsItem,
   CardsList,
   Favorite,
@@ -45,7 +46,10 @@ const AdvertsList = ({ adverts }) => {
       <CardsList>
         {adverts?.map(advert => (
           <CardsItem key={nanoid()}>
-            <Img src={advert.img || advert.photoLink} alt={advert.model} />
+            <Bg>
+              {' '}
+              <Img src={advert.img || advert.photoLink} alt={advert.model} />
+            </Bg>
             <TitleCar>
               <p>
                 {advert.make}

@@ -56,6 +56,7 @@ body {
   width: 100%;
   height: 100vh;
   margin: 0;
+  
 }
 h1,
 h2,
@@ -89,7 +90,7 @@ html {
 `;
 
 export const ContainerStyled = styled.div`
-  padding: 150px 115px;
+  padding: 100px 115px;
   margin-left: auto;
   margin-right: auto;
 

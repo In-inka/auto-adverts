@@ -78,7 +78,6 @@ const Catalog = () => {
 
   const handleMileageFromChange = event => {
     const input = event.target.value;
-    // Використовуйте регулярний вираз, щоб перевірити, чи введене значення - це число
     if (/^\d*$/.test(input)) {
       setFilterMileageFrom(input === '' ? '' : parseInt(input, 10));
     }
@@ -86,7 +85,6 @@ const Catalog = () => {
 
   const handleMileageToChange = event => {
     const input = event.target.value;
-    // Використовуйте регулярний вираз, щоб перевірити, чи введене значення - це число
     if (/^\d*$/.test(input)) {
       setFilterMileageTo(input === '' ? '' : parseInt(input, 10));
     }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import backgroundImage from '../../img/auto.jpg';
 
 export const CardsList = styled.ul`
   display: flex;
@@ -86,4 +87,14 @@ export const LearnMore = styled.button`
   &:focus {
     background-color: #0b44cd;
   }
+`;
+
+export const Bg = styled.div`
+  width: 274px;
+  height: 268px;
+  background: url(${backgroundImage}) center/cover no-repeat;
+  overflow: hidden;
+  border-radius: 14px;
+
+  margin-bottom: 14px;
 `;

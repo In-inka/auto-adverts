@@ -15,7 +15,7 @@ const initialState = {
     items: [],
     isLoading: false,
     error: null,
-    favorites: loadFavoritesFromLocalStorage(), // Завантажуємо з localStorage при ініціалізації
+    favorites: loadFavoritesFromLocalStorage(),
   },
 };
 
@@ -26,14 +26,14 @@ const advertsSlice = createSlice({
     addToFavorites(state, action) {
       const advertId = action.payload;
       state.adverts.favorites.push(advertId);
-      saveFavoritesToLocalStorage(state.adverts.favorites); // Зберігаємо зміни в localStorage
+      saveFavoritesToLocalStorage(state.adverts.favorites);
     },
     removeFromFavorites(state, action) {
       const advertId = action.payload;
       state.adverts.favorites = state.adverts.favorites.filter(
         id => id !== advertId
       );
-      saveFavoritesToLocalStorage(state.adverts.favorites); // Зберігаємо зміни в localStorage
+      saveFavoritesToLocalStorage(state.adverts.favorites);
     },
     handlePending(state) {
       state.adverts.isLoading = true;
