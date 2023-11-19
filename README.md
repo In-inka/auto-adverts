@@ -20,4 +20,4 @@ rental services in Ukraine.
 
 ## Start development:
 
-Start development mode by running the npm start command.
+Start development mode by running the "npm start" command.
