@@ -3,7 +3,7 @@
 Avto-adverts - web application, was created for a company that provides car
 rental services in Ukraine.
 
-(./assets/car.png)
+<img src="./assets/car.png" alt="Home page">
 
 ## Tectologies:
 
