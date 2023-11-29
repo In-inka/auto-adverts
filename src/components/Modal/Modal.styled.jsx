@@ -41,13 +41,12 @@ export const ButtonClose = styled.svg`
   cursor: pointer;
 `;
 
-export const ButtonCancel = styled.button`
+export const Rental = styled.a`
   padding: 12px 50px;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
   color: #ffffff;
   cursor: pointer;
-  outline: none;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   background: #3470ff;
 

@@ -4,11 +4,15 @@
   "private": true,
   "homepage": "https://In-inka.github.io/auto-adverts/",
   "dependencies": {
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.1",
+    "babel-plugin-styled-components": "^2.1.4",
     "modern-normalize": "^2.0.0",
     "msgpack-lite": "^0.1.26",
     "nanoid": "^3.3.4",
@@ -25,6 +29,8 @@
     "web-vitals": "^2.1.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

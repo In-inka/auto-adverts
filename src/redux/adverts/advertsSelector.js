@@ -15,3 +15,5 @@ export const selectFavoriteAdverts = createSelector(
     return adverts.filter(advert => favoriteIds.includes(advert.id));
   }
 );
+
+export const selectPage = state => state.adverts.adverts.nextPage;

@@ -16,6 +16,7 @@ const initialState = {
     isLoading: false,
     error: null,
     favorites: loadFavoritesFromLocalStorage(),
+    nextPage: 1,
   },
 };
 
@@ -42,6 +43,10 @@ const advertsSlice = createSlice({
       state.adverts.isLoading = false;
       state.adverts.error = action.payload;
     },
+    resetAdverts(state) {
+      state.adverts.items = [];
+      state.adverts.nextPage = 1;
+    },
   },
   extraReducers: {
     [getAdverts.pending]: state => {
@@ -50,7 +55,8 @@ const advertsSlice = createSlice({
     [getAdverts.fulfilled](state, action) {
       state.adverts.isLoading = false;
       state.adverts.error = null;
-      state.adverts.items = action.payload;
+      state.adverts.items = [...state.adverts.items, ...action.payload];
+      state.adverts.nextPage += 1;
     },
     [getAdverts.rejected]: (state, action) => {
       state.adverts.isLoading = false;
@@ -59,5 +65,6 @@ const advertsSlice = createSlice({
   },
 });
 
-export const { addToFavorites, removeFromFavorites } = advertsSlice.actions;
+export const { addToFavorites, removeFromFavorites, resetAdverts } =
+  advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;

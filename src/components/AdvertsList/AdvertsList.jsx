@@ -1,11 +1,12 @@
 import Modal from 'components/Modal/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addToFavorites,
   removeFromFavorites,
+  resetAdverts,
 } from 'redux/adverts/adverts-slice';
-import { selectFavoriteIds } from 'redux/adverts/advertsSelector';
+import { selectFavoriteIds, selectPage } from 'redux/adverts/advertsSelector';
 import {
   Bg,
   CardsItem,
@@ -21,17 +22,30 @@ import {
 import { splitAddress } from 'components/helpers/helpers';
 import sprite from '../icons/sprite.svg';
 import { nanoid } from 'nanoid';
+import { getAdverts } from 'redux/adverts/operations';
 
 const AdvertsList = ({ adverts }) => {
+  let page = Number(useSelector(selectPage));
+
   const dispatch = useDispatch();
   const [selectedAdvert, setSelectedAdvert] = useState(null);
   const favoriteAdverts = useSelector(selectFavoriteIds);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [nextPage, setNextPage] = useState(1);
+
   const handleToggleModal = advert => {
     setIsModalOpen(!isModalOpen);
     setSelectedAdvert(advert);
   };
+
+  const onClickLoadMore = () => {
+    setNextPage(prev => prev + 1);
+  };
+
+  useEffect(() => {
+    dispatch(getAdverts({ page: nextPage }));
+  }, [dispatch, nextPage]);
 
   const handleToggleFavorite = advertId => {
     if (favoriteAdverts.includes(advertId)) {
@@ -40,6 +54,13 @@ const AdvertsList = ({ adverts }) => {
       dispatch(addToFavorites(advertId));
     }
   };
+
+  useEffect(() => {
+    dispatch(resetAdverts());
+    setNextPage(1);
+  }, [dispatch]);
+
+  console.log(page);
 
   return (
     <>
@@ -94,6 +115,11 @@ const AdvertsList = ({ adverts }) => {
           </CardsItem>
         ))}
       </CardsList>
+      {page && (
+        <button type="button" onClick={onClickLoadMore}>
+          Додати
+        </button>
+      )}
       <Modal
         isOpen={isModalOpen}
         onClose={handleToggleModal}

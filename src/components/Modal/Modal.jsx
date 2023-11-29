@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   Backdrop,
-  ButtonCancel,
   ButtonClose,
   Conditions,
   ContainerConditions,
@@ -9,21 +8,13 @@ import {
   ModalContainer,
   Model,
   Picture,
+  Rental,
   Title,
 } from './Modal.styled';
 import sprite from '../icons/sprite.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFavoriteIds } from 'redux/adverts/advertsSelector';
-import {
-  addToFavorites,
-  removeFromFavorites,
-} from 'redux/adverts/adverts-slice';
 import { splitAddress } from 'components/helpers/helpers';
 
 const Modal = ({ isOpen, onClose, selectedAdvert }) => {
-  const favoriteAdverts = useSelector(selectFavoriteIds);
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('overflow-hidden');
@@ -41,6 +32,26 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
       onClose();
     }
   };
+
+  const handleEscape = useCallback(
+    e => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    },
+    [onClose]
+  );
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+    } else {
+      document.removeEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen, handleEscape]);
 
   if (!isOpen) return null;
 
@@ -69,16 +80,6 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
   } = selectedAdvert;
 
   const { city, country } = splitAddress(address);
-
-  const handleToggleFavorite = advertId => {
-    if (favoriteAdverts.includes(advertId)) {
-      dispatch(removeFromFavorites(advertId));
-    } else {
-      dispatch(addToFavorites(advertId));
-    }
-  };
-
-  const isAdvertInFavorites = favoriteAdverts.includes(id);
 
   return (
     <>
@@ -131,13 +132,7 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
             </ContainerConditions>
           </div>
 
-          <ButtonCancel
-            type="button"
-            onClick={() => handleToggleFavorite(id)}
-            disabled={isAdvertInFavorites}
-          >
-            Rental car
-          </ButtonCancel>
+          <Rental href="tel:+380730000000">Rental car</Rental>
         </ModalContainer>
       </Backdrop>
     </>

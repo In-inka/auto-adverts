@@ -4,16 +4,8 @@ import Catalog from '../page/Catalog/Catalog';
 import Favorites from '../page/Favorites/Favorites';
 import Home from '../page/Home/Home';
 import Layout from './Layout/Layout';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getAdverts } from 'redux/adverts/operations';
 
 export const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAdverts());
-  }, [dispatch]);
   return (
     <div>
       <Routes>

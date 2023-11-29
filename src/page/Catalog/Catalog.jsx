@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AdvertsList from 'components/AdvertsList/AdvertsList';
 import { make, rentalPrices } from 'components/dataFilter/dataFilter';
 import { getAdvertsItem } from 'redux/adverts/advertsSelector';
-import { getAdverts } from 'redux/adverts/operations';
+
 import { ContainerStyled } from 'GlodalStyle.styled';
 import { nanoid } from 'nanoid';
 import {
@@ -23,53 +23,59 @@ const Catalog = () => {
   const [filterPrice, setFilterPrice] = useState('');
   const [filterMileageTo, setFilterMileageTo] = useState('');
   const [filterMileageFrom, setFilterMileageFrom] = useState('');
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [filteredAdverts, setFilteredAdverts] = useState([]);
 
   const dispatch = useDispatch();
   const adverts = useSelector(getAdvertsItem);
-
-  const handleFilterButtonClick = () => {
-    const savedMake = filterMake;
-    const savedPrice = filterPrice;
-    const savedMileageFrom = filterMileageFrom;
-    const savedMileageTo = filterMileageTo;
-
-    localStorage.setItem('savedMake', savedMake);
-    localStorage.setItem('savedPrice', savedPrice);
-    localStorage.setItem('savedMileageFrom', savedMileageFrom);
-    localStorage.setItem('savedMileageTo', savedMileageTo);
-  };
-
-  const handleFilterSubmit = event => {
-    event.preventDefault();
-    handleFilterButtonClick();
-  };
+  useEffect(() => {
+    setFilteredAdverts(adverts);
+  }, [adverts]);
 
   useEffect(() => {
-    const savedMake = localStorage.getItem('savedMake');
-    const savedPrice = localStorage.getItem('savedPrice');
-    const savedMileageFrom = localStorage.getItem('savedMileageFrom');
-    const savedMileageTo = localStorage.getItem('savedMileageTo');
+    if (isFiltering) {
+      const filtered = adverts.filter(advert => {
+        let meetsMakeFilter = true;
+        let meetsPriceFilter = true;
+        let meetsMileageFrom = true;
+        let meetsMileageTo = true;
 
-    if (savedMake) {
-      setFilterMake(savedMake);
-    }
-    if (savedPrice) {
-      setFilterPrice(savedPrice);
-    }
-    if (savedMileageFrom) {
-      setFilterMileageFrom(savedMileageFrom);
-    }
-    if (savedMileageTo) {
-      setFilterMileageTo(savedMileageTo);
-    }
+        if (filterMake) {
+          meetsMakeFilter = advert.make === filterMake;
+        }
 
-    dispatch(getAdverts());
-  }, [dispatch]);
+        if (filterPrice) {
+          meetsPriceFilter = advert.rentalPrice === filterPrice;
+        }
 
-  const handleMakeChange = event => {
-    const selectedMake = event.target.value;
-    setFilterMake(selectedMake === 'All' ? '' : selectedMake);
-  };
+        if (filterMileageFrom) {
+          meetsMileageFrom = advert.mileage >= parseInt(filterMileageFrom, 10);
+        }
+
+        if (filterMileageTo) {
+          meetsMileageTo = advert.mileage <= parseInt(filterMileageTo, 10);
+        }
+
+        return (
+          meetsMakeFilter &&
+          meetsPriceFilter &&
+          meetsMileageFrom &&
+          meetsMileageTo
+        );
+      });
+
+      setFilteredAdverts(filtered);
+      setIsFiltering(false);
+    }
+  }, [
+    dispatch,
+    isFiltering,
+    adverts,
+    filterMake,
+    filterPrice,
+    filterMileageFrom,
+    filterMileageTo,
+  ]);
 
   const handlePriceChange = event => {
     const selectedPrice = event.target.value;
@@ -89,37 +95,20 @@ const Catalog = () => {
       setFilterMileageTo(input === '' ? '' : parseInt(input, 10));
     }
   };
+  const handleMakeChange = event => {
+    const selectedMake = event.target.value;
+    setFilterMake(selectedMake === 'All' ? '' : selectedMake);
+  };
+  const handleSearch = () => {
+    setIsFiltering(true);
+  };
 
-  const filteredAdverts = adverts.filter(advert => {
-    let meetsMakeFilter = true;
-    let meetsPriceFilter = true;
-    let meetsMileageFrom = true;
-    let meetsMileageTo = true;
-
-    if (filterMake) {
-      meetsMakeFilter = advert.make === filterMake;
-    }
-
-    if (filterPrice) {
-      meetsPriceFilter = advert.rentalPrice === filterPrice;
-    }
-
-    if (filterMileageFrom) {
-      meetsMileageFrom = advert.mileage >= parseInt(filterMileageFrom, 10);
-    }
-
-    if (filterMileageTo) {
-      meetsMileageTo = advert.mileage <= parseInt(filterMileageTo, 10);
-    }
-
-    return (
-      meetsMakeFilter && meetsPriceFilter && meetsMileageFrom && meetsMileageTo
-    );
-  });
-
+  const handleSubmit = event => {
+    event.preventDefault();
+  };
   return (
     <ContainerStyled>
-      <Form onSubmit={handleFilterSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Item>
           <Label htmlFor="brand">Car brand</Label>
           <Select
@@ -177,7 +166,7 @@ const Catalog = () => {
           </ItemMileage>
         </Item>
 
-        <Button type="submit" value="Search" />
+        <Button type="button" onClick={handleSearch} value="Search" />
       </Form>
 
       <AdvertsList adverts={filteredAdverts} />
