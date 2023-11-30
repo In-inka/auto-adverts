@@ -16,7 +16,7 @@ const initialState = {
     isLoading: false,
     error: null,
     favorites: loadFavoritesFromLocalStorage(),
-    nextPage: 1,
+    nextPage: 0,
   },
 };
 
@@ -45,7 +45,7 @@ const advertsSlice = createSlice({
     },
     resetAdverts(state) {
       state.adverts.items = [];
-      state.adverts.nextPage = 1;
+      state.adverts.nextPage = 0;
     },
   },
   extraReducers: {

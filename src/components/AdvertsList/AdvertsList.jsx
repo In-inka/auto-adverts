@@ -16,6 +16,7 @@ import {
   Img,
   InfoList,
   LearnMore,
+  LoadMore,
   Model,
   TitleCar,
 } from './AdvertsList.styled';
@@ -26,13 +27,17 @@ import { getAdverts } from 'redux/adverts/operations';
 
 const AdvertsList = ({ adverts }) => {
   let page = Number(useSelector(selectPage));
-
+  console.log(page);
   const dispatch = useDispatch();
   const [selectedAdvert, setSelectedAdvert] = useState(null);
   const favoriteAdverts = useSelector(selectFavoriteIds);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [nextPage, setNextPage] = useState(1);
+  const pageAdverts = 10 * (page - 1);
+
+  const shouldShowLoadMoreButton =
+    adverts.length > pageAdverts && pageAdverts < adverts.length;
 
   const handleToggleModal = advert => {
     setIsModalOpen(!isModalOpen);
@@ -57,10 +62,7 @@ const AdvertsList = ({ adverts }) => {
 
   useEffect(() => {
     dispatch(resetAdverts());
-    setNextPage(1);
   }, [dispatch]);
-
-  console.log(page);
 
   return (
     <>
@@ -114,11 +116,11 @@ const AdvertsList = ({ adverts }) => {
             </LearnMore>
           </CardsItem>
         ))}
-      </CardsList>
-      {page && (
-        <button type="button" onClick={onClickLoadMore}>
-          Додати
-        </button>
+      </CardsList>{' '}
+      {shouldShowLoadMoreButton && (
+        <LoadMore type="button" onClick={onClickLoadMore}>
+          Load more
+        </LoadMore>
       )}
       <Modal
         isOpen={isModalOpen}

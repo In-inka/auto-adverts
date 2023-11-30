@@ -98,3 +98,19 @@ export const Bg = styled.div`
 
   margin-bottom: 14px;
 `;
+
+export const LoadMore = styled.button`
+  display: block;
+  border: none;
+  color: #3470ff;
+
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5; /* 150% */
+  text-decoration-line: underline;
+  background: none;
+  margin-left: auto;
+  margin-right: auto;
+`;

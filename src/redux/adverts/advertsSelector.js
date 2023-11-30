@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectAdverts = state => state.adverts.adverts.items;
+export const selectAdverts = state => state.adverts.adverts.items;
 export const selectFavoriteIds = state => state.adverts.adverts.favorites;
 
 export const getAdvertsItem = state => selectAdverts(state);
