@@ -1,15 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 export const Head = styled.header`
+  display: flex;
+  padding: 5px;
+  position: absolute;
+  z-index: 10;
+  align-items: center;
   top: 0;
-  left: 0;
-  position: sticky;
-  z-index: 1100;
-  min-height: 35px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  left: 50%;
+  transform: translate(-50%, -0%);
   color: #fff;
   background: linear-gradient(
     90deg,
@@ -18,6 +17,9 @@ export const Head = styled.header`
   );
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  @media screen and (min-width: 1440px) {
+    width: 100%;
+  }
 `;
 
 export const Navigation = styled.nav`
@@ -32,7 +34,7 @@ export const List = styled.div`
 
 export const ListLink = styled(NavLink)`
   color: white;
-  font-size: 25px;
+  font-size: 15px;
   font-weight: bold;
 
   text-decoration: none;
@@ -40,12 +42,15 @@ export const ListLink = styled(NavLink)`
   cursor: pointer;
   outline: none;
 
-  padding: 7px;
+  padding: 5px;
 
   border: 1px solid #f7f7fb;
   border-radius: 6px;
 
   &:hover {
     transform: scale(1.08);
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 25px;
   }
 `;
