@@ -95,6 +95,8 @@ export const ContainerStyled = styled.div`
   margin-left: auto;
   margin-right: auto;
 
+  font-family: 'Manrope';
+
   @media screen and (min-width: 375px) {
     width: 375px;
   }
@@ -109,5 +111,4 @@ export const ContainerStyled = styled.div`
     padding-left: 96px;
     padding-right: 96px;
   }
-  font-family: 'Manrope';
 `;

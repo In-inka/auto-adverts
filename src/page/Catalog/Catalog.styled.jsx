@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
   padding-top: 75px;
-  padding-bottom: 25px;
 
   display: flex;
   gap: 10px;
@@ -11,7 +10,7 @@ export const Form = styled.form`
   align-items: flex-end;
   flex-wrap: wrap;
   @media screen and (min-width: 768px) {
-    padding-top: 75px;
+    padding-top: 80px;
     padding-bottom: 50px;
     gap: 18px;
     flex-wrap: nowrap;

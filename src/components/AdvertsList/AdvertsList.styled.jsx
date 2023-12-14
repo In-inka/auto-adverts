@@ -19,14 +19,14 @@ export const CardsList = styled.ul`
 
 export const CardsItem = styled.li`
   position: relative;
-  width: 250px;
+  width: 254px;
   @media screen and (min-width: 768px) {
     width: 274px;
   }
 `;
 
 export const Img = styled.img`
-  width: 250px;
+  width: 254px;
   height: 238px;
   border-radius: 10px;
   object-fit: cover;
@@ -53,12 +53,13 @@ export const TitleCar = styled.div`
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const InfoList = styled.ul`
   margin-bottom: 28px;
   height: 35px;
-  width: 250px;
+  width: 254px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
@@ -140,6 +141,7 @@ export const LoadMore = styled.button`
   display: block;
   border: none;
   color: #3470ff;
+  width: 254px;
 
   font-family: Manrope;
   font-size: 14px;
@@ -152,7 +154,8 @@ export const LoadMore = styled.button`
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
-    width: 274px;
+    width: 290px;
+
     padding: 12px 99px;
     font-weight: 600;
   }
