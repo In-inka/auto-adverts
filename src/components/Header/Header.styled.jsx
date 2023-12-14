@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 export const Head = styled.header`
+  width: 100%;
   display: flex;
-  padding: 5px;
+  padding: 10px;
   position: absolute;
   z-index: 10;
   align-items: center;

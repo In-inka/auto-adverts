@@ -102,12 +102,12 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
               {city}| {country}| id: {id}| Year: {year}| Type:{type}|
               Consumption: {fuelConsumption}| Engine Size: {engineSize}
             </Details>
-            <p style={{ marginBottom: '24px' }}>{description}</p>
-            <p style={{ marginBottom: '8px' }}>
+            <Title style={{ marginBottom: '24px' }}>{description}</Title>
+            <Title style={{ marginBottom: '8px' }}>
               Accessories and functionalities:
-            </p>
+            </Title>
             <Details>{functionalities.join('| ')}</Details>
-            <p>Rental Conditions:</p>
+            <Title>Rental Conditions:</Title>
             <ContainerConditions>
               {rentalConditions.split('\n').map((condition, index) => (
                 <Conditions

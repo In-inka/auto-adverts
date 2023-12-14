@@ -3,23 +3,41 @@ import backgroundImage from '../../img/auto.jpg';
 
 export const CardsList = styled.ul`
   display: flex;
-  column-gap: 29px;
-  row-gap: 50px;
+  justify-content: center;
+  column-gap: 19px;
+  row-gap: 25px;
   flex-wrap: wrap;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+
+  @media screen and (min-width: 768px) {
+    column-gap: 29px;
+    row-gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+  }
 `;
 
 export const CardsItem = styled.li`
   position: relative;
-  width: 274px;
+  width: 250px;
+  @media screen and (min-width: 768px) {
+    width: 274px;
+  }
 `;
 
 export const Img = styled.img`
-  width: 274px;
-  height: 268px;
-  border-radius: 14px;
+  width: 250px;
+  height: 238px;
+  border-radius: 10px;
   object-fit: cover;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+  @media screen and (min-width: 768px) {
+    width: 274px;
+    height: 268px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-bottom: 14px;
+  }
 `;
 
 export const Model = styled.span`
@@ -39,8 +57,8 @@ export const TitleCar = styled.div`
 
 export const InfoList = styled.ul`
   margin-bottom: 28px;
-  height: 40px;
-  width: 270px;
+  height: 35px;
+  width: 250px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
@@ -49,9 +67,16 @@ export const InfoList = styled.ul`
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  font-size: 12px;
+  font-size: 10px;
   color: rgba(18, 20, 23, 0.5);
   line-height: 1.5;
+
+  @media screen and (min-width: 768px) {
+    width: 270px;
+    height: 40px;
+
+    font-size: 12px;
+  }
 `;
 
 export const IconFavorite = styled.svg`
@@ -68,9 +93,9 @@ export const Favorite = styled.button`
 
 export const LearnMore = styled.button`
   display: flex;
-  width: 274px;
+  width: 250px;
 
-  padding: 12px 99px;
+  padding: 10px 48px;
   justify-content: center;
   align-items: center;
 
@@ -78,25 +103,37 @@ export const LearnMore = styled.button`
   background: #3470ff;
 
   color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.42;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.28;
 
   border: none;
   &:hover,
   &:focus {
     background-color: #0b44cd;
   }
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    width: 274px;
+    padding: 12px 99px;
+    font-weight: 600;
+  }
 `;
 
 export const Bg = styled.div`
-  width: 274px;
-  height: 268px;
+  width: 254px;
+  height: 238px;
   background: url(${backgroundImage}) center/cover no-repeat;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 10px;
 
   margin-bottom: 14px;
+  @media screen and (min-width: 768px) {
+    width: 274px;
+    height: 268px;
+    border-radius: 14px;
+  }
 `;
 
 export const LoadMore = styled.button`
@@ -105,12 +142,18 @@ export const LoadMore = styled.button`
   color: #3470ff;
 
   font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1.5; /* 150% */
+  line-height: 1.5;
   text-decoration-line: underline;
   background: none;
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    width: 274px;
+    padding: 12px 99px;
+    font-weight: 600;
+  }
 `;
