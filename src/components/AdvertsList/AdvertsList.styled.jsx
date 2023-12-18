@@ -7,13 +7,13 @@ export const CardsList = styled.ul`
   column-gap: 19px;
   row-gap: 25px;
   flex-wrap: wrap;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
 
   @media screen and (min-width: 768px) {
     column-gap: 29px;
     row-gap: 50px;
     flex-wrap: wrap;
-    margin-bottom: 100px;
+    padding-bottom: 100px;
   }
 `;
 
@@ -35,7 +35,7 @@ export const Img = styled.img`
     width: 274px;
     height: 268px;
     border-radius: 14px;
-    object-fit: cover;
+
     margin-bottom: 14px;
   }
 `;
@@ -50,10 +50,17 @@ export const Model = styled.span`
 
 export const TitleCar = styled.div`
   margin-bottom: 8px;
+  font-size: 14px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+
+    line-height: 1.33;
+  }
 `;
 
 export const InfoList = styled.ul`

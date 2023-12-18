@@ -27,7 +27,7 @@ import { getAdverts } from 'redux/adverts/operations';
 
 const AdvertsList = ({ adverts }) => {
   let page = Number(useSelector(selectPage));
-  console.log(page);
+
   const dispatch = useDispatch();
   const [selectedAdvert, setSelectedAdvert] = useState(null);
   const favoriteAdverts = useSelector(selectFavoriteIds);
@@ -81,11 +81,11 @@ const AdvertsList = ({ adverts }) => {
               <p>{advert.rentalPrice}</p>
             </TitleCar>
             <InfoList>
-              <li>{splitAddress(advert.address).city} | </li>
-              <li>{splitAddress(advert.address).country} | </li>
+              <li>{splitAddress(advert.address).city}&nbsp;| </li>
+              <li>{splitAddress(advert.address).country}&nbsp;| </li>
 
               <li>{advert.rentalCompany} | </li>
-              <li>{advert.accessories[2].split(' ')[0]} | </li>
+              <li>{advert.accessories[2].split(' ')[0]}&nbsp;| </li>
               <li>
                 {advert.type.charAt(0).toUpperCase() +
                   advert.type.slice(1).toLowerCase()}{' '}

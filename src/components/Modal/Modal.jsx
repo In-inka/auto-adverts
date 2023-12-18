@@ -99,8 +99,8 @@ const Modal = ({ isOpen, onClose, selectedAdvert }) => {
               </Title>
             </div>
             <Details>
-              {city}| {country}| id: {id}| Year: {year}| Type:{type}|
-              Consumption: {fuelConsumption}| Engine Size: {engineSize}
+              {city} | {country} | id: {id} | Year: {year} | Type:{type} |
+              Consumption: {fuelConsumption} | Engine Size: {engineSize}
             </Details>
             <Title style={{ marginBottom: '24px' }}>{description}</Title>
             <Title style={{ marginBottom: '8px' }}>

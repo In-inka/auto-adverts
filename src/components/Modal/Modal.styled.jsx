@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
   padding: 32px 20px;
   border: 1px solid #efede833;
   width: 328px;
-  height: 630px;
+  min-height: 630px;
   margin-top: 100px;
   margin-right: auto;
   margin-left: auto;
@@ -34,7 +34,7 @@ export const ModalContainer = styled.div`
     padding: 40px 37px;
     border: 1px solid #efede833;
     width: 541px;
-    height: 742px;
+    min-height: 752px;
     margin-top: 150px;
   }
 `;
@@ -100,6 +100,7 @@ export const Model = styled.p`
   color: #3470ff;
 `;
 export const Picture = styled.img`
+  object-fit: cover;
   margin-bottom: 10px;
   border-radius: 10px;
   width: 328px;
