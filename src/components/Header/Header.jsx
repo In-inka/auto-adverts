@@ -11,7 +11,7 @@ const Header = () => {
           </ListLink>
           <List>
             <ListLink to="/catalog">Catalog</ListLink>
-            <ListLink to="/favorites">Favorites</ListLink>
+            <ListLink to="/favorites">Favorite</ListLink>
           </List>
         </Navigation>
       </ContainerStyled>
