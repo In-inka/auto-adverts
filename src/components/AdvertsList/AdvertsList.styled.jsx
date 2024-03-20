@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import backgroundImage from '../../img/auto.jpg';
 
+export const AdvertsAll = styled.div`
+  padding-bottom: 25px;
+`;
+
 export const CardsList = styled.ul`
   display: flex;
   justify-content: center;
@@ -43,21 +47,21 @@ export const Img = styled.img`
 export const Model = styled.span`
   color: #3470ff;
   font-family: Manrope;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
 `;
 
 export const TitleCar = styled.div`
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 12px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media screen and (min-width: 768px) {
-    font-size: 18px;
+    font-size: 14px;
 
     line-height: 1.33;
   }
@@ -146,24 +150,30 @@ export const Bg = styled.div`
 
 export const LoadMore = styled.button`
   display: block;
-  border: none;
+  margin: 0 auto;
+  width: 175px;
   color: #3470ff;
-  width: 254px;
-
-  font-family: Manrope;
   font-size: 14px;
-  font-weight: 500;
-  line-height: 1.5;
-  text-decoration-line: underline;
-  background: none;
-  margin-left: auto;
-  margin-right: auto;
+  font-weight: bold;
+
+  text-decoration: none;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 0.5);
+  cursor: pointer;
+  outline: none;
+
+  padding: 5px;
+
+  background-color: transparent;
+
+  border: 1px solid #3470ff;
+  border-radius: 6px;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 
   @media screen and (min-width: 768px) {
+    width: 190px;
     font-size: 16px;
-    width: 290px;
-
-    padding: 12px 99px;
-    font-weight: 600;
   }
 `;

@@ -6,8 +6,9 @@ import {
   removeFromFavorites,
   resetAdverts,
 } from 'redux/adverts/adverts-slice';
-import { selectFavoriteIds, selectPage } from 'redux/adverts/advertsSelector';
+import { selectFavoriteIds } from 'redux/adverts/advertsSelector';
 import {
+  AdvertsAll,
   Bg,
   CardsItem,
   CardsList,
@@ -26,18 +27,14 @@ import { nanoid } from 'nanoid';
 import { getAdverts } from 'redux/adverts/operations';
 
 const AdvertsList = ({ adverts }) => {
-  let page = Number(useSelector(selectPage));
-
   const dispatch = useDispatch();
   const [selectedAdvert, setSelectedAdvert] = useState(null);
   const favoriteAdverts = useSelector(selectFavoriteIds);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [nextPage, setNextPage] = useState(1);
-  const pageAdverts = 10 * (page - 1);
 
-  const shouldShowLoadMoreButton =
-    adverts.length > pageAdverts && pageAdverts < adverts.length;
+  const shouldShowLoadMore = adverts.length % 10 === 0;
 
   const handleToggleModal = advert => {
     setIsModalOpen(!isModalOpen);
@@ -65,7 +62,7 @@ const AdvertsList = ({ adverts }) => {
   }, [dispatch]);
 
   return (
-    <>
+    <AdvertsAll>
       <CardsList>
         {adverts?.map(advert => (
           <CardsItem key={nanoid()}>
@@ -117,7 +114,7 @@ const AdvertsList = ({ adverts }) => {
           </CardsItem>
         ))}
       </CardsList>{' '}
-      {shouldShowLoadMoreButton && (
+      {shouldShowLoadMore && (
         <LoadMore type="button" onClick={onClickLoadMore}>
           Load more
         </LoadMore>
@@ -127,7 +124,7 @@ const AdvertsList = ({ adverts }) => {
         onClose={handleToggleModal}
         selectedAdvert={selectedAdvert}
       />
-    </>
+    </AdvertsAll>
   );
 };
 
