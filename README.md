@@ -1,6 +1,6 @@
-# Avto-adverts
+# Rental_car
 
-Avto-adverts - web application, was created for a company that provides car
+Rental_car - web application, was created for a company that provides car
 rental services in Ukraine.
 
 <img src="./assets/car.png" alt="Home page">
